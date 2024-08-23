@@ -1,0 +1,104 @@
+Task 1
+// Book Library
+// Build a simple book library application where users can add, view, and remove books.
+// 1. Create
+// 2. Create
+// a. b. c. d.
+// a Book class with properties like title, author, isbn, and status (read/unread). a Library class that holds an array of books. Add methods to:
+// Add a new book.
+// Remove a book by ISBN.
+// Display all books.
+// Filter books by read/unread status.
+
+class Book {
+    constructor (title, author, isbn, status) {
+        this.title = title;
+        this.author = author;
+        this.isbn = isbn;
+        this.status = status;
+    }
+}
+
+class Library {
+    constructor() {
+        this.books = [];
+    }
+
+    add(...books) {
+        this.books.push(...books);
+    }
+
+    remove(isbn) {
+        this.books = this.books.filter(book => book.isbn !== isbn);
+    }
+
+    display() {
+        if (this.books.length === 0) {
+            console.log("The library is empty.");
+        } else {
+            this.books.forEach(book => {
+                return `Title: ${book.title}, Author: ${book.author}, ISBN: ${book.isbn}, Status: ${book.status}`;
+            });
+        }
+    }
+
+    filterStatus(status) {
+        return this.books.filter(book => book.status === status);
+    }
+}
+
+const gatsby = new Book('Great Gatsby', 'Fithzerald', '12545678', 'read')
+const crimeAndPunishmen = new Book('Crime and Punishment','Fedor Dostoevsky','1239815r8', 'unread' )
+const darkTower = new Book('Dark Tower', 'Steven King', '123-90951', 'read')
+const talesOfSharky = new Book('Tales of Captain Sharky', 'Arthur Conan Doyle', '1986109', 'unread')
+
+let library = new Library()
+
+
+Task 2
+// To-Do List
+// Build a to-do list application where users can add, mark as complete, and remove tasks.
+// Create a Task class with properties like description, dueDate, and isComplete.
+// Create a TaskList class that manages an array of tasks. Add methods to:
+// a. Add a new task.
+// b. Mark a task as complete.
+// c. Remove a task.
+// d. Display all tasks with filtering options (e.g., all tasks, only completed, only
+// incomplete).
+
+class Task {
+    constructor(description, dueDate, isComplete = false) {
+        this.description = description;
+        this.dueDate = dueDate;
+        this.isComplete = isComplete;
+    }
+}
+
+
+class TaskList {
+    constructor(...tasks) {
+        this.tasks = [];
+    }
+
+    add(...tasks) {
+        this.tasks.push(...tasks);
+    }
+
+    markAsComplete(description) {
+        let task = this.tasks.find(task => task.description === description);
+        if (task) {
+            task.isComplete = true;
+        }
+    }
+
+    removeCompletedTasks() {
+        this.tasks = this.tasks.filter(task => !task.isComplete);
+    }
+
+    display() {
+        this.tasks.forEach(task => {
+            console.log(`Task: ${task.description}, Due Date: ${task.dueDate}, Completed: ${task.isComplete}`);
+        });
+    }
+}
+
