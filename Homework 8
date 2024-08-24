@@ -6,7 +6,7 @@ Task 1
 // a. b. c. d.
 // a Book class with properties like title, author, isbn, and status (read/unread). a Library class that holds an array of books. Add methods to:
 // Add a new book.
-// Remove a book by ISBN.
+// Remove a book by ISBN.c
 // Display all books.
 // Filter books by read/unread status.
 
@@ -102,3 +102,103 @@ class TaskList {
     }
 }
 
+
+Task 3
+// Student Management System
+// Build a student management system where users can manage student information.
+// 1. Create a base Person class with properties like name, age, and id
+// 2. Extend the Person class to create Student, Teacher, and Administrator classes.
+// 3. Each subclass might have specific properties like grade for Student, subject for Teacher,
+// and department for Administrator.
+// 4. Create a Classroom class that holds an array of students. Add methods to:
+// a. Add a new student.
+// b. Remove a student by ID.
+// c. Update student information.
+// d. Display all students or filter by grade. e. Add teacher
+// f. Remove Teacher
+// g. Update Teacher information
+// h. Add Administrator
+// i. Remove Administrator
+// j. Update Administrator information
+
+class Person {
+    constructor(name, age, id) {
+        this.name = name;
+        this.age = age;
+        this.id = id;
+    }
+}
+
+class Student extends Person {
+    constructor(name, age, id, grade) {
+        super(name, age, id);
+        this.grade = grade;
+    }
+}
+
+class Teacher extends Person {
+    constructor(name, age, id, subject) {
+        super(name, age, id);
+        this.subject = subject;
+    }
+}
+
+class Administrator extends Person {
+    constructor(name, age, id, department) {
+        super(name, age, id);
+        this.department = department;
+    }
+}
+
+class Classroom {
+    constructor() {
+        this.students = [];
+    }
+
+    addStudent(student) {
+        this.students.push(student);
+    }
+
+    removeStudentById(id) {
+        this.students = this.students.filter(student => student.id !== id);
+    }
+
+    updateStudentInfo(id, newInfo) {
+        const student = this.students.find(student => student.id === id);
+        if (student) {
+            Object.assign(student, newInfo);
+        }
+    }
+
+    displayStudents(grade) {
+        this.students .filter(student => !grade || student.grade === grade).forEach(student => 
+                console.log(`Name: ${student.name}, Age: ${student.age}, ID: ${student.id}, Grade: ${student.grade}`)
+            );
+    }
+
+    addTeacher(teacher) {
+        this.teachers.push(teacher);
+    }
+
+    removeTeacherById(id) {
+        this.teachers = this.teachers.filter(teacher => teacher.id !== id);
+    }
+
+    updateTeacherInfo(id, newInfo) {
+        const teacher = this.teachers.find(teacher => teacher.id === id);
+        if (teacher) Object.assign(teacher, newInfo);
+    }
+
+    addAdministrator(administrator) {
+        this.administrators.push(administrator);
+    }
+
+    removeAdministratorById(id) {
+        this.administrators = this.administrators.filter(administrator => administrator.id !== id);
+    }
+
+    updateAdministratorInfo(id, newInfo) {
+        const administrator = this.administrators.find(administrator => administrator.id === id);
+        if (administrator) Object.assign(administrator, newInfo);
+    }
+}
